@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "nxgen-mobile-rn",
+    "slug": "nxgen-mobile-rn",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "nxgen-mobile-rn"
+}
