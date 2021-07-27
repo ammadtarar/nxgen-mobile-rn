@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from "./Screens/Home";
 import Login from "./Screens/Login";
 import Register from "./Screens/Register";
+import ForgotPasword from "./Screens/ForgotPassword";
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,11 @@ function App() {
           options={{ title: 'NxGen Labs', headerShown: false }}
           name="Register"
           component={Register}
+        />
+        <Stack.Screen
+          options={{ title: 'NxGen Labs', headerShown: false }}
+          name="ForgotPassword"
+          component={ForgotPasword}
         />
       </Stack.Navigator>
     </NavigationContainer>
