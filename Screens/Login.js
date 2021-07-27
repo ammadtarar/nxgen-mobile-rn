@@ -1,22 +1,64 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, Image } from 'react-native';
 import { authStyles } from '../styles';
 import Button from "../Components/Button";
 import TextView from '../Components/TextView';
+import { showMessage, hideMessage } from "react-native-flash-message";
+import Spinner from 'react-native-loading-spinner-overlay';
 
 export default function App({ navigation }) {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [showSpinner, setShowSpinner] = useState(false);
+
+
+    function login() {
+        if (!email || email.length <= 0) {
+            showMessage({ type: 'danger', message: 'Please enter a valid email address' });
+            return
+        }
+
+        if (!password || password.length <= 0) {
+            showMessage({ type: 'danger', message: 'Please enter your password' });
+            return
+        }
+
+        setShowSpinner(true);
+        setTimeout(() => {
+            goToHome();
+        }, 3000);
+    };
+
+    function goToHome() {
+        setShowSpinner(false)
+        showMessage({
+            message: "Login Successful",
+            type: "success",
+        });
+        navigation.reset({
+            index: 0,
+            routes: [{ name: 'Home' }],
+        });
+    }
+
     return (
         <View style={authStyles.container}>
+            <Spinner
+                visible={showSpinner}
+                textContent={'Please Wait...'}
+                spinnerTextStyle={{ color: 'white' }}
+            />
             <Image style={authStyles.bg} source={require('../assets/images/gradient.png')} />
             <Image style={authStyles.logo} source={require('../assets/images/logo2.png')} />
             <View style={authStyles.card}>
                 <View style={authStyles.cardBg}></View>
                 <Text style={authStyles.login}>Login</Text>
-                <TextView title='Username' placeholder='Enter your username here' />
-                <TextView title='Password' placeholder='Enter your password here' />
+                <TextView onChangeText={(text) => setEmail(text)} title='Username' placeholder='Enter your username here' />
+                <TextView secureText={true} onChangeText={(text) => setPassword(text)} value={setPassword} type='password' title='Password' placeholder='Enter your password here' />
                 <Button type='big' title='Login' onPress={() => {
-                    console.log('on click login')
+                    login();
                 }} />
                 <View style={authStyles.forgotPassword}>
                     <Text style={authStyles.forgotText}>Forget your password ?</Text>
@@ -32,6 +74,7 @@ export default function App({ navigation }) {
                 }} />
             </View>
             <StatusBar style="dark" />
+
         </View>
     );
 }

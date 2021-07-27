@@ -9,7 +9,7 @@ const TextView = (props) => {
     return (
         <View >
             <Text style={authStyles.field}>{props.title}</Text>
-            <TextInput style={authStyles.input} placeholder={props.placeholder} />
+            <TextInput secureTextEntry={props.secureText || false} onChangeText={props.onChangeText} style={authStyles.input} placeholder={props.placeholder} />
         </View>
     );
 }

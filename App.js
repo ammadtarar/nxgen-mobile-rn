@@ -6,12 +6,14 @@ import Home from "./Screens/Home";
 import Login from "./Screens/Login";
 import Register from "./Screens/Register";
 import ForgotPasword from "./Screens/ForgotPassword";
+import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 
 const Stack = createStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
+      <FlashMessage position="bottom" />
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen options={{ title: 'NxGen Labs' }} name="Home" component={Home} />
         <Stack.Screen
@@ -30,7 +32,9 @@ function App() {
           component={ForgotPasword}
         />
       </Stack.Navigator>
+
     </NavigationContainer>
+
   );
 }
 
