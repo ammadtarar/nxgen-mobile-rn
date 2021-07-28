@@ -111,7 +111,6 @@ export default function App() {
     const [showFilters, setShowFilters] = useState(false);
     const [name, setName] = useState('');
     const [reports, setReports] = useState(reportsData);
-    const [filtersHeight, setFiltersHeight] = useState('');
 
 
 
@@ -141,46 +140,58 @@ export default function App() {
     );
 
     return (
+
         <View style={s.reports} >
 
+            {
+                showFilters &&
+                <View style={s.filtersWrapper}>
+                    <View style={s.filters} >
 
-            <View style={s.filters} onLayout={(event) => { setFiltersHeight(event.nativeEvent.layout.height) }}>
+                        <TouchableOpacity onPress={() => { setShowFilters(!showFilters) }}>
+                            <View style={s.filtersTop}>
+                                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                                    <Ionicons size={22} name='options' color='orange' />
+                                    <Text style={s.filtersTitle}>Filters</Text>
+                                </View>
+                                {<Ionicons size={30} name={'ios-close'} color='orange' />}
+                            </View>
+                        </TouchableOpacity>
+                        {
+                            showFilters &&
+                            <View style={s.filtersBottom}>
+                                <TextView title='Report Name' type='search' placeholder='Enter a keyword for the report name' />
+                                <View style={s.spacer}></View>
+                                <SearchDatePicker placeholder='Select a date for the report' title='Report Date'></SearchDatePicker>
+                                <View style={s.filtersActions}>
+                                    <View style={s.btWrapper}>
+                                        <Button title='Clear Filters' type='searchInvert'></Button>
+                                    </View>
+                                    <View style={s.hSpacer}></View>
+                                    <View style={s.btWrapper}>
+                                        <Button title='Apply Filters' type='search'></Button>
+                                    </View>
 
+
+                                </View>
+                            </View>
+                        }
+
+                    </View>
+                </View>
+            }
+
+
+            <View style={s.titleContainer}>
+                <Text style={s.pageTitle}>Reports</Text>
                 <TouchableOpacity onPress={() => { setShowFilters(!showFilters) }}>
-                    <View style={s.filtersTop}>
-                        <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                            <Ionicons size={22} name='options' color='orange' />
-                            <Text style={s.filtersTitle}>Filters</Text>
-                        </View>
-                        {<Ionicons size={30} name={!showFilters ? 'ios-arrow-down-circle' : 'ios-arrow-up-circle'} color='orange' />}
+                    <View style={s.filterBt}>
+                        <Ionicons size={20} name='options' color='white' />
                     </View>
                 </TouchableOpacity>
-                {
-                    showFilters &&
-                    <View style={s.filtersBottom}>
-                        <TextView title='Report Name' type='search' placeholder='Enter a keyword for the report name' />
-                        <View style={s.spacer}></View>
-                        <SearchDatePicker placeholder='Select a date for the report' title='Report Date'></SearchDatePicker>
-                        <View style={s.filtersActions}>
-                            <View style={s.btWrapper}>
-                                <Button title='Clear Filters' type='searchInvert'></Button>
-                            </View>
-                            <View style={s.hSpacer}></View>
-                            <View style={s.btWrapper}>
-                                <Button title='Apply Filters' type='search'></Button>
-                            </View>
-
-
-                        </View>
-                    </View>
-                }
-
             </View>
 
-
-
             <FlatList
-                style={{ height: Dimensions.get('window').height - (filtersHeight + 120) }}
                 data={reports}
                 renderItem={renderItem}
                 key={item => item.id}
@@ -194,16 +205,52 @@ export default function App() {
 
 const s = StyleSheet.create({
     reports: {
+        flex: 1
+    },
+    titleContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingTop: 14,
+        paddingBottom: 10,
+        paddingLeft: 14,
+        paddingRight: 14
+    },
+    pageTitle: {
+        fontSize: 30,
+        fontWeight: '800'
+    },
+    filterBt: {
+        width: 34,
+        height: 34,
+        borderRadius: 20,
+        backgroundColor: 'orange',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    filtersWrapper: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        zIndex: 2,
+        backgroundColor: 'rgba(0,0,0,0.5)',
         width: '100%',
+        height: '100%',
+        flex: 1,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     filters: {
         backgroundColor: 'white',
-        width: '100%',
+        width: '90%',
         padding: 20,
         paddingBottom: 10,
         shadowColor: 'gray',
         shadowRadius: 10,
-        shadowOpacity: 0.2
+        shadowOpacity: 0.2,
+        borderRadius: 10
     },
     filtersTop: {
         width: '100%',

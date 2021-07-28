@@ -90,7 +90,7 @@ export default function App() {
             }
 
             <View style={s.titleContainer}>
-                <Text style={s.pageTitle}>Rate List</Text>
+                <Text style={s.pageTitle}>Packages</Text>
                 <TouchableOpacity onPress={() => { setShowFilters(!showFilters) }}>
                     <View style={s.filterBt}>
                         <Ionicons size={20} name='options' color='white' />

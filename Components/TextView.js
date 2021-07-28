@@ -12,6 +12,7 @@ const TextView = (props) => {
 
             <Text displ style={props.type == 'search' ? authStyles.searchTitle : authStyles.field}>{props.title}</Text>
             <TextInput
+                value={props.value}
                 secureTextEntry={props.secureText || false}
                 onChangeText={props.onChangeText}
                 style={props.type == 'search' ? authStyles.searchInput : authStyles.input}

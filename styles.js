@@ -62,9 +62,11 @@ const authStyles = {
         fontWeight: '200'
     },
     field: {
-        fontSize: 14,
+        fontSize: 12,
         marginBottom: 6,
-        color: 'gray'
+        color: 'gray',
+        textTransform: 'uppercase',
+        fontWeight: '600'
     },
     searchBox: {
         backgroundColor: '#EEEEEE',
@@ -79,12 +81,14 @@ const authStyles = {
         color: 'black'
     },
     input: {
-        marginTop: 4,
         fontSize: 14,
         marginBottom: 18,
-        borderBottomWidth: 0.5,
-        borderBottomColor: 'gray',
+        borderWidth: 0.5,
+        borderColor: 'gray',
+        padding: 6,
+        paddingTop: 10,
         paddingBottom: 10,
+        borderRadius: 6
     },
     searchInput: {
         marginTop: 4,

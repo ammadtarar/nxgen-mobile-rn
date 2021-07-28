@@ -46,7 +46,7 @@ const appointmentsData = [
     },
 ];
 
-export default function App() {
+export default function App({ navigation }) {
 
     const [appointments, setAppointments] = useState(appointmentsData);
 
@@ -115,8 +115,8 @@ export default function App() {
 
             <View style={s.titleContainer}>
                 <Text style={s.pageTitle}>Appointments</Text>
-                <TouchableOpacity >
-                    <Ionicons size={30} name='md-add-circle-sharp' color='orange' />
+                <TouchableOpacity onPress={() => { navigation.navigate('Book') }}>
+                    <Ionicons size={40} name='add-circle-sharp' color='orange' />
                 </TouchableOpacity>
             </View>
             <FlatList
@@ -145,7 +145,7 @@ const s = StyleSheet.create({
         paddingRight: 14
     },
     pageTitle: {
-        fontSize: 20,
+        fontSize: 30,
         fontWeight: '800'
     },
     item: {
