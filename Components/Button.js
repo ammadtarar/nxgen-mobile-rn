@@ -15,6 +15,12 @@ const Button = (props) => {
         } else if (props.type == 'small') {
             setLayoutStyle(authStyles.btReg);
             setTextStyle(authStyles.btRegText)
+        } else if (props.type == 'search') {
+            setLayoutStyle(authStyles.btSearch);
+            setTextStyle(authStyles.btSearchText)
+        } else if (props.type == 'searchInvert') {
+            setLayoutStyle(authStyles.btSearchInvert);
+            setTextStyle(authStyles.btSearchInvertText)
         } else {
             setLayoutStyle('');
             setTextStyle(authStyles.simpleBt)
@@ -23,7 +29,7 @@ const Button = (props) => {
 
     return (
         <TouchableOpacity onPress={props.onPress}>
-            <View style={layoutStyle}>
+            <View style={[layoutStyle, props.customStyle]}>
                 <Text style={textStyle} >{props.title}</Text>
             </View>
         </TouchableOpacity>

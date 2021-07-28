@@ -14,7 +14,7 @@ function App() {
   return (
     <NavigationContainer>
       <FlashMessage position="bottom" />
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen options={{ title: 'NxGen Labs' }} name="Home" component={Home} />
         <Stack.Screen
           options={{ title: 'NxGen Labs', headerShown: false }}

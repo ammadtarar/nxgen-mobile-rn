@@ -7,9 +7,16 @@ const TextView = (props) => {
 
 
     return (
-        <View >
-            <Text style={authStyles.field}>{props.title}</Text>
-            <TextInput secureTextEntry={props.secureText || false} onChangeText={props.onChangeText} style={authStyles.input} placeholder={props.placeholder} />
+        <View style={props.type == 'search' ? authStyles.searchBox : ''}>
+
+
+            <Text displ style={props.type == 'search' ? authStyles.searchTitle : authStyles.field}>{props.title}</Text>
+            <TextInput
+                secureTextEntry={props.secureText || false}
+                onChangeText={props.onChangeText}
+                style={props.type == 'search' ? authStyles.searchInput : authStyles.input}
+                placeholder={props.placeholder}
+            />
         </View>
     );
 }

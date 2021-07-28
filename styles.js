@@ -23,12 +23,12 @@ const authStyles = {
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
     },
     logo: {
         width: 200,
         height: 200,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
+        marginTop: 50
     },
     card: {
         width: '90%',
@@ -63,16 +63,39 @@ const authStyles = {
     },
     field: {
         fontSize: 14,
-        marginBottom: 6
+        marginBottom: 6,
+        color: 'gray'
+    },
+    searchBox: {
+        backgroundColor: '#EEEEEE',
+        padding: 10,
+        borderRadius: 10,
+        paddingBottom: 14
+    },
+    searchTitle: {
+        fontSize: 12,
+        fontWeight: '600',
+        marginBottom: 10,
+        color: 'black'
     },
     input: {
         marginTop: 4,
         fontSize: 14,
-        fontWeight: '600',
         marginBottom: 18,
         borderBottomWidth: 0.5,
         borderBottomColor: 'gray',
-        paddingBottom: 10
+        paddingBottom: 10,
+    },
+    searchInput: {
+        marginTop: 4,
+        fontSize: 14,
+        backgroundColor: '#FAFAFA',
+        paddingTop: 14,
+        paddingBottom: 14,
+        paddingLeft: 18,
+        paddingRight: 18,
+        borderRadius: 20,
+        color: 'black'
     },
     bt: {
         width: '100%',
@@ -88,6 +111,34 @@ const authStyles = {
         color: 'white',
         fontWeight: '800',
         textTransform: 'uppercase'
+    },
+    btSearch: {
+        width: '100%',
+        height: 40,
+        backgroundColor: 'orange',
+        borderRadius: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    btSearchText: {
+        color: 'white',
+        fontSize: 14,
+        fontWeight: '600'
+    },
+    btSearchInvert: {
+        width: '100%',
+        height: 40,
+        backgroundColor: 'transparent',
+        borderRadius: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: 'orange'
+    },
+    btSearchInvertText: {
+        color: 'orange',
+        fontSize: 14,
+        fontWeight: '600'
     },
     notRegistered: {
         width: '90%',
