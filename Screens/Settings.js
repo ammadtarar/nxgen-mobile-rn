@@ -1,43 +1,45 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 export default function App({ navigation }) {
     return (
-        <View style={s.container}>
-            <ScrollView>
-                <View style={s.titleContainer}>
-                    <Text style={s.pageTitle}>Settings</Text>
-                </View>
-                <View style={s.userCard}>
-                    <Text style={s.loggedInAs}>Logged In As</Text>
-                    <View style={s.avatarCont}>
-                        <View style={s.avatar}></View>
-                        <Text style={s.user}>Ammad Amjad Tarar</Text>
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={s.container}>
+                <ScrollView>
+                    <View style={s.titleContainer}>
+                        <Text style={s.pageTitle}>Settings</Text>
                     </View>
-                    <View style={s.kvCont}>
-                        <Text style={s.key}>Phone</Text>
-                        <Text style={s.val}>+92 315 5988883</Text>
+                    <View style={s.userCard}>
+                        <Text style={s.loggedInAs}>Logged In As</Text>
+                        <View style={s.avatarCont}>
+                            <View style={s.avatar}></View>
+                            <Text style={s.user}>Ammad Amjad Tarar</Text>
+                        </View>
+                        <View style={s.kvCont}>
+                            <Text style={s.key}>Phone</Text>
+                            <Text style={s.val}>+92 315 5988883</Text>
+                        </View>
+                        <View style={s.kvCont}>
+                            <Text style={s.key}>Email</Text>
+                            <Text style={s.val}>ammadtarar@gmail.com</Text>
+                        </View>
                     </View>
-                    <View style={s.kvCont}>
-                        <Text style={s.key}>Email</Text>
-                        <Text style={s.val}>ammadtarar@gmail.com</Text>
-                    </View>
-                </View>
-                <TouchableOpacity onPress={() => {
-                    navigation.reset({
-                        index: 0,
-                        routes: [{ name: 'Login' }],
-                    })
-                }}>
-                    <View style={s.logout}>
-                        <Ionicons size={18} name='log-out-outline' color='red' />
-                        <Text style={s.logoutText}>Logout</Text>
-                    </View>
-                </TouchableOpacity>
-            </ScrollView>
-            <StatusBar style="auto" />
-        </View>
+                    <TouchableOpacity onPress={() => {
+                        navigation.reset({
+                            index: 0,
+                            routes: [{ name: 'Login' }],
+                        })
+                    }}>
+                        <View style={s.logout}>
+                            <Ionicons size={18} name='log-out-outline' color='red' />
+                            <Text style={s.logoutText}>Logout</Text>
+                        </View>
+                    </TouchableOpacity>
+                </ScrollView>
+                <StatusBar style="auto" />
+            </View>
+        </SafeAreaView>
     );
 }
 

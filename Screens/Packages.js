@@ -1,28 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Image, Text, View, TouchableOpacity, FlatList } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import TextView from '../Components/TextView';
 import Button from '../Components/Button';
-const Rates = require('../assets/data/ratelist');
+const Packages = require('../assets/data/packages');
 
 export default function App() {
 
     const [showFilters, setShowFilters] = useState(false);
-    const [rates, setRates] = useState(Rates);
+    const [packages, setPackages] = useState(Packages);
     const [testName, setTestName] = useState('');
 
 
     const renderItem = ({ item }) => (
         <View style={s.item}>
+            <Image style={s.ItemBg} source={item.img} />
             <View style={s.titleCont}>
                 <Text style={s.itemTitle}>{item.name}</Text>
                 <Text style={s.price}>Rs.{item.price}</Text>
-            </View>
-            <Text style={s.sampleName}>{item.sample}</Text>
-            <View style={s.hCont}>
-                <Ionicons size={20} name='ios-time-outline' color='orange' />
-                <Text style={s.hContVal}>{item.time}</Text>
             </View>
         </View >
     );
@@ -89,16 +85,15 @@ export default function App() {
                 </View>
             }
 
-            <View style={s.titleContainer}>
-                <Text style={s.pageTitle}>Packages</Text>
+            <View style={s.filterBtWrapper}>
                 <TouchableOpacity onPress={() => { setShowFilters(!showFilters) }}>
                     <View style={s.filterBt}>
-                        <Ionicons size={20} name='options' color='white' />
+                        <Ionicons size={20} name='options' color='black' />
                     </View>
                 </TouchableOpacity>
             </View>
             <FlatList
-                data={rates}
+                data={packages}
                 renderItem={renderItem}
                 keyExtractor={item => item.name}
             />
@@ -112,66 +107,75 @@ const s = StyleSheet.create({
     container: {
         flex: 1,
     },
-    titleContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingTop: 14,
-        paddingBottom: 10,
-        paddingLeft: 14,
-        paddingRight: 14
-    },
-    pageTitle: {
-        fontSize: 30,
-        fontWeight: '800'
+    filterBtWrapper: {
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
+        zIndex: 2
     },
     filterBt: {
-        width: 34,
-        height: 34,
-        borderRadius: 20,
+        width: 45,
+        height: 45,
+        borderRadius: 25,
         backgroundColor: 'orange',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        shadowColor: 'rgba(0, 0, 0, 0.5)',
+        shadowRadius: 10,
+        shadowOpacity: 0.4
     },
     item: {
-        padding: 20,
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 10,
+        height: 150,
         backgroundColor: 'white',
         borderRadius: 4,
-        marginTop: 10,
-        marginLeft: 10,
-        marginRight: 10
+        zIndex: 2,
+        overflow: 'hidden',
+        position: 'relative',
+    },
+    ItemBg: {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        zIndex: 1
     },
     titleCont: {
         display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between'
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        position: 'relative',
+        top: 0,
+        left: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        width: '100%',
+        height: '100%',
+        zIndex: 2,
+        padding: 20
+
     },
     price: {
         fontSize: 14,
-        fontWeight: '600'
+        fontWeight: '600',
+        marginLeft: 'auto',
+        marginTop: 30,
+        color: 'white',
+        backgroundColor: 'orange',
+        padding: 4,
     },
     itemTitle: {
         fontSize: 14,
-        fontWeight: '600',
-        maxWidth: '70%'
+        fontWeight: '800',
+        maxWidth: '70%',
+        color: 'white',
     },
     sampleName: {
         fontSize: 12,
         color: 'gray',
         marginTop: 10
-    },
-    hCont: {
-        display: 'flex',
-        flexDirection: 'row',
-        marginTop: 10,
-        alignItems: 'center'
-    },
-    hContVal: {
-        fontSize: 12,
-        color: 'black',
-        textTransform: 'capitalize',
-        marginLeft: 4
     },
     filtersWrapper: {
         position: 'absolute',

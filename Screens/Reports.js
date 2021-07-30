@@ -123,14 +123,14 @@ export default function App() {
                 <View style={s.itemActions}>
                     <TouchableOpacity>
                         <View style={s.itemAction}>
-                            <Ionicons size={18} name='ios-download' color='white' />
+                            <Ionicons size={18} name='ios-download' color='orange' />
                             <Text style={s.itemActionText}>Download</Text>
                         </View>
                     </TouchableOpacity>
 
                     <TouchableOpacity>
                         <View style={[s.itemAction, { marginLeft: 8 }]}>
-                            <Ionicons size={18} name='ios-eye-sharp' color='white' />
+                            <Ionicons size={18} name='ios-eye-sharp' color='orange' />
                             <Text style={s.itemActionText}>View</Text>
                         </View>
                     </TouchableOpacity>
@@ -140,66 +140,68 @@ export default function App() {
     );
 
     return (
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={s.reports} >
 
-        <View style={s.reports} >
+                {
+                    showFilters &&
+                    <View style={s.filtersWrapper}>
+                        <View style={s.filters} >
 
-            {
-                showFilters &&
-                <View style={s.filtersWrapper}>
-                    <View style={s.filters} >
-
-                        <TouchableOpacity onPress={() => { setShowFilters(!showFilters) }}>
-                            <View style={s.filtersTop}>
-                                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                    <Ionicons size={22} name='options' color='orange' />
-                                    <Text style={s.filtersTitle}>Filters</Text>
-                                </View>
-                                {<Ionicons size={30} name={'ios-close'} color='orange' />}
-                            </View>
-                        </TouchableOpacity>
-                        {
-                            showFilters &&
-                            <View style={s.filtersBottom}>
-                                <TextView title='Report Name' type='search' placeholder='Enter a keyword for the report name' />
-                                <View style={s.spacer}></View>
-                                <SearchDatePicker placeholder='Select a date for the report' title='Report Date'></SearchDatePicker>
-                                <View style={s.filtersActions}>
-                                    <View style={s.btWrapper}>
-                                        <Button title='Clear Filters' type='searchInvert'></Button>
+                            <TouchableOpacity onPress={() => { setShowFilters(!showFilters) }}>
+                                <View style={s.filtersTop}>
+                                    <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                                        <Ionicons size={22} name='options' color='orange' />
+                                        <Text style={s.filtersTitle}>Filters</Text>
                                     </View>
-                                    <View style={s.hSpacer}></View>
-                                    <View style={s.btWrapper}>
-                                        <Button title='Apply Filters' type='search'></Button>
-                                    </View>
-
-
+                                    {<Ionicons size={30} name={'ios-close'} color='orange' />}
                                 </View>
-                            </View>
-                        }
+                            </TouchableOpacity>
+                            {
+                                showFilters &&
+                                <View style={s.filtersBottom}>
+                                    <TextView title='Report Name' type='search' placeholder='Enter a keyword for the report name' />
+                                    <View style={s.spacer}></View>
+                                    <SearchDatePicker placeholder='Select a date for the report' title='Report Date'></SearchDatePicker>
+                                    <View style={s.filtersActions}>
+                                        <View style={s.btWrapper}>
+                                            <Button title='Clear Filters' type='searchInvert'></Button>
+                                        </View>
+                                        <View style={s.hSpacer}></View>
+                                        <View style={s.btWrapper}>
+                                            <Button title='Apply Filters' type='search'></Button>
+                                        </View>
 
+
+                                    </View>
+                                </View>
+                            }
+
+                        </View>
                     </View>
+                }
+
+
+                <View style={s.titleContainer}>
+                    <Text style={s.pageTitle}>Reports</Text>
+                    <TouchableOpacity onPress={() => { setShowFilters(!showFilters) }}>
+                        <View style={s.filterBt}>
+                            <Ionicons size={20} name='options' color='black' />
+                        </View>
+                    </TouchableOpacity>
                 </View>
-            }
+
+                <FlatList
+                    data={reports}
+                    renderItem={renderItem}
+                    key={item => item.id}
+                />
 
 
-            <View style={s.titleContainer}>
-                <Text style={s.pageTitle}>Reports</Text>
-                <TouchableOpacity onPress={() => { setShowFilters(!showFilters) }}>
-                    <View style={s.filterBt}>
-                        <Ionicons size={20} name='options' color='white' />
-                    </View>
-                </TouchableOpacity>
+                <StatusBar style="auto" />
             </View>
 
-            <FlatList
-                data={reports}
-                renderItem={renderItem}
-                key={item => item.id}
-            />
-
-
-            <StatusBar style="auto" />
-        </View>
+        </SafeAreaView>
     );
 }
 
@@ -222,8 +224,8 @@ const s = StyleSheet.create({
         fontWeight: '800'
     },
     filterBt: {
-        width: 34,
-        height: 34,
+        width: 40,
+        height: 40,
         borderRadius: 20,
         backgroundColor: 'orange',
         justifyContent: 'center',
@@ -326,16 +328,18 @@ const s = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: 'orange',
+        backgroundColor: 'transparent',
         paddingTop: 4,
         paddingBottom: 4,
         paddingLeft: 10,
         paddingRight: 10,
-        borderRadius: 20
+        borderRadius: 20,
+        borderWidth: 0.5,
+        borderColor: 'orange'
     },
     itemActionText: {
         fontSize: 12,
-        color: 'white',
+        color: 'orange',
         marginLeft: 4,
         fontWeight: '600'
     }

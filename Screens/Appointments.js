@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const appointmentsData = [
@@ -99,7 +99,7 @@ export default function App({ navigation }) {
                 <View style={s.itemActions}>
                     <TouchableOpacity>
                         <View style={s.itemAction}>
-                            <Ionicons size={18} name='ios-close' color='white' />
+                            <Ionicons size={18} name='ios-close' color='red' />
                             <Text style={s.itemActionText}>Cancel</Text>
                         </View>
                     </TouchableOpacity>
@@ -111,22 +111,26 @@ export default function App({ navigation }) {
 
 
     return (
-        <View style={s.container}>
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={s.container}>
 
-            <View style={s.titleContainer}>
-                <Text style={s.pageTitle}>Appointments</Text>
-                <TouchableOpacity onPress={() => { navigation.navigate('Book') }}>
-                    <Ionicons size={40} name='add-circle-sharp' color='orange' />
-                </TouchableOpacity>
+                <View style={s.titleContainer}>
+                    <Text style={s.pageTitle}>Appointments</Text>
+                    <TouchableOpacity onPress={() => { navigation.navigate('Book') }}>
+                        <View style={s.filterBt}>
+                            <Ionicons size={30} name='md-add' color='black' />
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <FlatList
+                    data={appointments}
+                    renderItem={renderItem}
+                    key={item => item.id}
+                />
+
+                <StatusBar style="auto" />
             </View>
-            <FlatList
-                data={appointments}
-                renderItem={renderItem}
-                key={item => item.id}
-            />
-
-            <StatusBar style="auto" />
-        </View>
+        </SafeAreaView>
     );
 }
 
@@ -159,6 +163,16 @@ const s = StyleSheet.create({
     top: {
         display: 'flex',
         flexDirection: 'row'
+    },
+    filterBt: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        display: 'flex',
+        backgroundColor: 'orange',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column'
     },
     itemTitle: {
         fontSize: 14,
@@ -219,16 +233,18 @@ const s = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#EF5350',
-        paddingTop: 6,
-        paddingBottom: 6,
-        paddingLeft: 10,
-        paddingRight: 10,
+        backgroundColor: 'transparent',
+        paddingTop: 3,
+        paddingBottom: 3,
+        borderWidth: 0.5,
+        borderColor: '#EF5350',
+        paddingLeft: 5,
+        paddingRight: 5,
         borderRadius: 20
     },
     itemActionText: {
         fontSize: 12,
-        color: 'white',
+        color: '#EF5350',
         marginLeft: 4,
         fontWeight: '600',
         marginRight: 4

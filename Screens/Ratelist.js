@@ -89,18 +89,18 @@ export default function App() {
                 </View>
             }
 
-            <View style={s.titleContainer}>
-                <Text style={s.pageTitle}>Rate List</Text>
+            <View style={s.filterBtWrapper}>
                 <TouchableOpacity onPress={() => { setShowFilters(!showFilters) }}>
                     <View style={s.filterBt}>
-                        <Ionicons size={20} name='options' color='white' />
+                        <Ionicons size={20} name='options' color='black' />
                     </View>
                 </TouchableOpacity>
             </View>
+
             <FlatList
                 data={rates}
                 renderItem={renderItem}
-                keyExtractor={item => item.name}
+                keyExtractor={(item, key) => String(key)}
             />
 
             <StatusBar style="auto" />
@@ -126,13 +126,22 @@ const s = StyleSheet.create({
         fontSize: 30,
         fontWeight: '800'
     },
+    filterBtWrapper: {
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
+        zIndex: 2
+    },
     filterBt: {
-        width: 34,
-        height: 34,
-        borderRadius: 20,
+        width: 45,
+        height: 45,
+        borderRadius: 25,
         backgroundColor: 'orange',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        shadowColor: 'rgba(0, 0, 0, 0.5)',
+        shadowRadius: 10,
+        shadowOpacity: 0.4
     },
     item: {
         padding: 20,
@@ -177,7 +186,7 @@ const s = StyleSheet.create({
         position: 'absolute',
         top: 0,
         left: 0,
-        zIndex: 2,
+        zIndex: 3,
         backgroundColor: 'rgba(0,0,0,0.5)',
         width: '100%',
         height: '100%',
