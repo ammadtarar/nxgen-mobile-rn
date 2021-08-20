@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { authStyles } from '../styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Button from "../Components/Button";
@@ -30,31 +30,36 @@ export default function App({ navigation }) {
     }
 
     return (
-        <View style={authStyles.container}>
-            <Spinner
-                visible={showSpinner}
-                textContent={'Please Wait...'}
-                spinnerTextStyle={{ color: 'white' }}
-            />
-            <TouchableOpacity style={authStyles.back} onPress={() => {
-                navigation.goBack()
-            }}>
-                {<Ionicons size='30' name='ios-close' color='gray' />}
-            </TouchableOpacity>
+        <View style={authStyles.wrapper}>
             <Image style={authStyles.bg} source={require('../assets/images/gradient.png')} />
-            <Image style={authStyles.logo} source={require('../assets/images/logo2.png')} />
-            <View style={authStyles.card}>
-                <View style={authStyles.cardBg}></View>
-                <Text style={authStyles.login}>Reset Password</Text>
+            <ScrollView style={authStyles.sv}>
+                <View style={authStyles.container}>
+                    <Spinner
+                        visible={showSpinner}
+                        textContent={'Please Wait...'}
+                        spinnerTextStyle={{ color: 'white' }}
+                    />
+                    <TouchableOpacity style={authStyles.back} onPress={() => {
+                        navigation.goBack()
+                    }}>
+                        {<Ionicons size='30' name='ios-close' color='gray' />}
+                    </TouchableOpacity>
+                    <Image style={authStyles.logo} source={require('../assets/images/logo2.png')} />
+                    <View style={authStyles.card}>
+                        <View style={authStyles.cardBg}></View>
+                        <Text style={authStyles.login}>Reset Password</Text>
 
-                <Text style={authStyles.info}>
-                    Please enter your email address below. We will email you your password
-                </Text>
-                <TextView onChangeText={(text) => setEmail(text)} title='Email' placeholder='Eneter your email address here' />
-                <Button title='Reset' type='big' onPress={onClickReset}></Button>
-            </View>
-            <StatusBar style="dark" />
+                        <Text style={authStyles.info}>
+                            Please enter your email address below. We will email you your password
+                        </Text>
+                        <TextView onChangeText={(text) => setEmail(text)} title='Email' placeholder='Eneter your email address here' />
+                        <Button title='Reset' type='big' onPress={onClickReset}></Button>
+                    </View>
+                    <StatusBar style="dark" />
+                </View>
+            </ScrollView>
         </View>
+
     );
 }
 

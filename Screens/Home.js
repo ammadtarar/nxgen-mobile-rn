@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, Text, Platform, NativeModules, StyleSheet, TouchableOpacity } from 'react-native';
 const { StatusBarManager } = NativeModules;
+import { useNavigation } from '@react-navigation/native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -18,7 +19,8 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            scanStyle: { bottom: 0 }
+            scanStyle: { bottom: 0 },
+            navigation: props.navigation
         }
     }
     componentDidMount() {
@@ -52,6 +54,12 @@ export default class App extends React.Component {
                 console.log(this.state);
             })
         }
+    }
+
+    onClickScan() {
+        console.log('onClickScan');
+        const navigation = useNavigation();
+        navigation.navigate('Scanner')
     }
 
     render() {
@@ -96,7 +104,9 @@ export default class App extends React.Component {
                     <Tab.Screen name="Settings" component={Settings} listeners={{}} />
                 </Tab.Navigator>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => {
+                    this.state.navigation.navigate('Scanner')
+                }}>
                     <View style={[s.btScanWrapper, this.state.scanStyle]}>
                         <View style={s.btScan}>
                             <Ionicons name='ios-qr-code' size={20} color='black' />

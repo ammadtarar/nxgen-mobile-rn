@@ -7,6 +7,7 @@ import Login from "./Screens/Login";
 import Register from "./Screens/Register";
 import ForgotPasword from "./Screens/ForgotPassword";
 import BookAppointment from "./Screens/BookAppointment";
+import Scanner from "./Screens/Scanner";
 
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 
@@ -54,6 +55,11 @@ function App() {
           options={{ title: 'Book Appointment', headerShown: true }}
           name="Book"
           component={BookAppointment}
+        />
+        <Stack.Screen
+          options={{ title: 'Scanner', headerShown: true }}
+          name="Scanner"
+          component={Scanner}
         />
       </Stack.Navigator>
 

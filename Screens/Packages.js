@@ -19,6 +19,7 @@ export default function App() {
             <View style={s.titleCont}>
                 <Text style={s.itemTitle}>{item.name}</Text>
                 <Text style={s.price}>Rs.{item.price}</Text>
+                <Text>{item.img}</Text>
             </View>
         </View >
     );

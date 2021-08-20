@@ -51,5 +51,9 @@
 	<false/>
   <key>UIStatusBarStyle</key>
   <string>UIStatusBarStyleDefault</string>
+  <key>NSCameraUsageDescription</key>
+	<string>We need access to your camera for the QR code reader functionality</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photos albums if you need to use a qr code from your photo album</string>
 </dict>
 </plist>

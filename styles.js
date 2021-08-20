@@ -1,8 +1,13 @@
 import { StyleSheet } from 'react-native';
 
 const authStyles = {
+    wrapper: {
+        flex: 1,
+        position: 'relative'
+    },
     sv: {
-        backgroundColor: 'black'
+        flex: 1,
+        zIndex: 2
     },
     bg: {
         flex: 1,
@@ -11,6 +16,7 @@ const authStyles = {
         left: 0,
         width: '100%',
         height: '100%',
+        zIndex: 1
     },
     back: {
         position: 'absolute',
@@ -21,7 +27,6 @@ const authStyles = {
     },
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
     },
     logo: {
@@ -37,7 +42,7 @@ const authStyles = {
         shadowOffset: { width: 0, height: 1 },
         shadowRadius: 4,
         borderRadius: 10,
-        overflow: 'hidden'
+        overflow: 'hidden',
     },
     cardBg: {
         position: 'absolute',
